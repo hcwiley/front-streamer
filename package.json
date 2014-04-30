@@ -20,7 +20,7 @@
     "less-middleware"       : "0.1.11",
     "socket.io"             : "*",
     "socket.io-client"      : "*",
-    "pm2"                   : "*",
+    "forever"               : "*",
     "supervisor"            : "*"
   }
 }

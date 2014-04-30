@@ -1,0 +1,6 @@
+#!/bin/bash
+git push
+ssh hcwiley.com << EOF
+  cd ~/git/front-streamer
+  ./updateFromLive
+EOF

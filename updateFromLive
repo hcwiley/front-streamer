@@ -1,0 +1,8 @@
+#!/bin/bash
+git pull
+cp -rf ~/git/front-streamer/* ~/webapps/front-stream/
+cd ~/webapps/front-stream/
+npm install
+source .env
+forever stop $PWD/app.coffee
+forever -l ./front-streamer.log start -c coffee $PWD/app.coffee
