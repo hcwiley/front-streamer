@@ -62,7 +62,7 @@ io.sockets.on "connection",  (socket) ->
     console.log 'get them frames'
     s3Client.list {}, (err, data) ->
       console.log err  if err
-      console.log data
+      #console.log data
       imgs = []
       for img in data.Contents
         imgs.push "https://s3.amazonaws.com/#{config.s3.bucket}/#{img.Key}"
