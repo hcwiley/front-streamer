@@ -1,7 +1,7 @@
 exports.loggerFormat = "dev"
 exports.useErrorHandler = true
 exports.enableEmailLogin = true
-exports.mongodb = "mongodb://localhost/front-streamer"
+exports.mongodb = process.env.MONGO_DB || "mongodb://localhost/front-streamer"
 exports.sessionSecret = "super duper bowls"
 
 exports.s3 =
