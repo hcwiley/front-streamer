@@ -11,7 +11,11 @@ path              = require('path')
 pubDir            = path.join(__dirname, 'public')
 child             = require('child_process')
 fs                = require 'fs' 
-knox              = require 'knox'
+mongoose          = require 'mongoose'
+
+Frame = require('./models').Frame
+
+mongoose.connect config.mongodb
 
 # create app, server, and web sockets
 app = express()
@@ -46,8 +50,6 @@ app.configure ->
   app.use express.errorHandler()  if config.useErrorHandler
 
 
-s3Client = knox.createClient config.s3
-
 io.sockets.on "connection",  (socket) ->
 
   socket?.emit "connection", "I am your father"
@@ -60,28 +62,17 @@ io.sockets.on "connection",  (socket) ->
 
   socket.on 'getFrames', ->
     console.log 'get them frames'
-    s3Client.list {}, (err, data) ->
-      console.log err  if err
-      #console.log data
+    Frame.find {}, 'src', (err, frames) ->
+      return console.log err  if err?
       console.log 'got dem frames'
-      imgs = []
-      for img in data.Contents
-        imgs.push "https://s3.amazonaws.com/#{config.s3.bucket}/#{img.Key}"
-      socket.emit 'gotFrames', imgs
+      socket.emit 'gotFrames', frames
 
 
   socket.on 'image', (uri) ->
     base64Data = uri.replace(/^data:image\/png;base64,/,"")
     buffer = new Buffer(base64Data, 'base64')
+    Frame.saveImage buffer
 
-    headers = 
-      'x-amz-acl': 'public-read'
-      'Content-Length': buffer.length
-      'Content-Type': 'image/png'
-    date = new Date()
-    folder = "#{date.getFullYear()}-#{date.getMonth()}-#{date.getDate()}"
-    s3Client.putBuffer buffer, "#{folder}/#{date.toJSON()}.png", headers, (err, res) ->
-      console.log err  if err?
       
 # you need to be signed for this business!
 app.all "/auth/login", (req, res) ->

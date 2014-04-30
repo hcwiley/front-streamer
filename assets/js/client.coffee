@@ -31,7 +31,7 @@ playFrames = (frames) ->
 
 playFrame = (frame, next) ->
   setTimeout ->
-    $("#stillFrame").attr 'src', frame
+    $("#stillFrame").attr 'src', frame.src
     next()
   , 1000
 
