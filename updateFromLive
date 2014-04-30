@@ -1,8 +1,8 @@
 #!/bin/bash
 git pull
-cp -rf ~/git/front-streamer/* ~/webapps/front-stream/
-cd ~/webapps/front-stream/
+cp -rf ~/git/front-streamer/* ~/webapps/front_stream/
+cd ~/webapps/front_stream/
 npm install
 source .env
 forever stop $PWD/app.coffee
-forever -l ./front-streamer.log start -c coffee $PWD/app.coffee
+forever -l ./front_streamer.log start -c coffee $PWD/app.coffee
