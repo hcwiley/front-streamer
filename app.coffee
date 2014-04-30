@@ -1,17 +1,17 @@
 ###
 Module dependencies.
 ###
-config = require("./config")
-express = require("express")
-lessMiddleware = require('less-middleware')
-path = require("path")
-http = require("http")
-socketIo = require("socket.io")
-path = require('path')
-pubDir = path.join(__dirname, 'public')
-child = require('child_process')
-fs = require 'fs' 
-knox      = require 'knox'
+config            = require("./config")
+express           = require("express")
+lessMiddleware    = require('less-middleware')
+path              = require("path")
+http              = require("http")
+socketIo          = require("socket.io")
+path              = require('path')
+pubDir            = path.join(__dirname, 'public')
+child             = require('child_process')
+fs                = require 'fs' 
+knox              = require 'knox'
 
 # create app, server, and web sockets
 app = express()
@@ -63,6 +63,7 @@ io.sockets.on "connection",  (socket) ->
     s3Client.list {}, (err, data) ->
       console.log err  if err
       #console.log data
+      console.log 'got dem frames'
       imgs = []
       for img in data.Contents
         imgs.push "https://s3.amazonaws.com/#{config.s3.bucket}/#{img.Key}"
