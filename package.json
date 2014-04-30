@@ -1,0 +1,24 @@
+{
+  "name"      : "studio-brain",
+  "version"   : "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">0.8"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "async": "*",
+    "coffee-script"         : "*",
+    "express"               : "3.*",
+    "connect-assets"        : "2.5.*",
+    "cookie"                : "*",
+    "jade"                  : "0.35.*",
+    "less"                  : "1.3.3",
+    "less-middleware"       : "0.1.11",
+    "socket.io"             : "*",
+    "socket.io-client"      : "*",
+    "supervisor"            : "*"
+  }
+}
