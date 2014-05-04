@@ -23,6 +23,7 @@ $(window).ready ->
     $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
     #$("#time").text new Date(frames[0]?.time).toLocaleString()
     a.frames = frames
+    alert a.frames.length
 
   a.readyForNext = true
 
@@ -44,7 +45,7 @@ $(window).ready ->
       $("#time").html "#{o.x}<br>#{o.y}"
       if Math.abs(val) > 1
         #a.delay = (7 / Math.abs(val)) * 500
-        a.delay = 500
+        a.delay = 1000
         playFrame a.frames[currentFrame], ->
           a.readyForNext = true
 
@@ -60,6 +61,5 @@ playFrame = (frame, next) ->
   , a.delay
 
 frameLoaded = (img) ->
-  alert 'switvh'
   $("#stillFrame").css 'background-image', "url('#{img.srcElement.src}')"
-  #$("#time").text img.srcElement.alt
+  $("#time").text img.srcElement.alt
