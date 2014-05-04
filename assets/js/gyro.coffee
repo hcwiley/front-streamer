@@ -60,5 +60,6 @@ playFrame = (frame, next) ->
   , a.delay
 
 frameLoaded = (img) ->
+  alert 'switvh'
   $("#stillFrame").css 'background-image', "url('#{img.srcElement.src}')"
   #$("#time").text img.srcElement.alt
