@@ -20,6 +20,8 @@ $(window).ready ->
   socket.emit 'getFrames', ''
 
   socket.on 'gotFrames', (frames)->
+    $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
+    $("#time").text new Date(frames[0]?.time).toLocaleString()
     a.frames = frames
 
   a.readyForNext = true
