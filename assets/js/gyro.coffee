@@ -30,20 +30,17 @@ $(window).ready ->
 
   gyro.startTracking (o) ->
     if a.readyForNext
-      dir = ''
-      if Math.abs(o.alpha) > 45
-        val = o.y
-        dir = 'y'
-      else
-        val = o.x
-        dir = 'x'
+      #if Math.abs(o.alpha) > 45
+        #val = o.y
+      #else
+        #val = o.x
+      val = o.x
       if val > 0
         if ++currentFrame >= a.frames.length
           currentFrame = 0
       if val < 0
         if --currentFrame == -1
           currentFrame = a.frames.length
-        dir = 'y'
       $("#time").html "#{o.x}<br>#{o.y}"
       if Math.abs(val) > 1
         a.delay = (7 / Math.abs(val)) * 500
