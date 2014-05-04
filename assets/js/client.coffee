@@ -27,7 +27,7 @@ playFrames = (frames) ->
   time = 60*60*1000
   a.delay = time / a.frames.length
   $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
-  $("#time").text frames[0]?.time
+  $("#time").text new Date(frames[0]?.time).toLocaleString()
   playFrame frames[currentFrame], ->
     if ++currentFrame < frames.length
       playFrames frames
