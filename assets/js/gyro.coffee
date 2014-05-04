@@ -21,7 +21,7 @@ $(window).ready ->
 
   socket.on 'gotFrames', (frames)->
     $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
-    $("#time").text new Date(frames[0]?.time).toLocaleString()
+    #$("#time").text new Date(frames[0]?.time).toLocaleString()
     a.frames = frames
 
   a.readyForNext = true
@@ -29,7 +29,7 @@ $(window).ready ->
   currentFrame = 1
 
   gyro.startTracking (o) ->
-    #$("#time").text JSON.stringify o
+    $("#time").text JSON.stringify o
     if a.readyForNext
       if $(window).width() > $(window).height()
         val = o.y
@@ -52,7 +52,7 @@ playFrames = (frames) ->
   time = 60*60*1000
   a.delay = time / a.frames.length
   $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
-  $("#time").text new Date(frames[0]?.time).toLocaleString()
+  #$("#time").text new Date(frames[0]?.time).toLocaleString()
   playFrame frames[currentFrame], ->
     if ++currentFrame < frames.length
       playFrames frames
@@ -70,4 +70,4 @@ playFrame = (frame, next) ->
 
 frameLoaded = (img) ->
   $("#stillFrame").css 'background-image', "url('#{img.srcElement.src}')"
-  $("#time").text img.srcElement.alt
+  #$("#time").text img.srcElement.alt
