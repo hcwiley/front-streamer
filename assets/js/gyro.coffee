@@ -29,18 +29,22 @@ $(window).ready ->
   currentFrame = 1
 
   gyro.startTracking (o) ->
-    $("#time").text JSON.stringify o
     if a.readyForNext
+      dir = ''
       if $(window).width() > $(window).height()
         val = o.y
+        dir = 'y'
       else
         val = o.x
+        dir = 'x'
       if val > 0
         if ++currentFrame >= a.frames.length
           currentFrame = 0
       if val < 0
         if --currentFrame == -1
           currentFrame = a.frames.length
+        dir = 'y'
+      $("#time").text "#{dir}: #{val}"
       if Math.abs(val) > 1
         a.delay = (7 / Math.abs(val)) * 500
         playFrame a.frames[currentFrame], ->
