@@ -31,7 +31,7 @@ $(window).ready ->
   gyro.startTracking (o) ->
     if a.readyForNext
       dir = ''
-      if $(window).width() > $(window).height()
+      if Math.abs(o.alpha) > 45
         val = o.y
         dir = 'y'
       else
