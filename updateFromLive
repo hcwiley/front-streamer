@@ -5,4 +5,5 @@ cd ~/webapps/front_stream/
 npm install
 source .env
 forever stop $PWD/app.coffee
+rm ~/.forever/front_streamer.log
 forever -l front_streamer.log start -c coffee $PWD/app.coffee
