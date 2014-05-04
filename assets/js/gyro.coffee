@@ -35,6 +35,7 @@ $(window).ready ->
       #else
         #val = o.x
       val = o.x
+      $("#time").text val
       if val > 0
         if ++currentFrame >= a.frames.length
           currentFrame = 0
@@ -54,6 +55,7 @@ playFrame = (frame, next) ->
     image.onload = frameLoaded
     image.src = frame.src
     image.alt = new Date(frame.time).toLocaleString()
+    $("#time").append "do it!"
     next()
   , a.delay
 
