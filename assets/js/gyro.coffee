@@ -41,11 +41,11 @@ $(window).ready ->
       if val < 0
         if --currentFrame == -1
           currentFrame = a.frames.length
-      if Math.abs(val) > 1
+      #if Math.abs(val) > 1
         #a.delay = (7 / Math.abs(val)) * 500
-        a.delay = 1000
-        playFrame a.frames[currentFrame], ->
-          a.readyForNext = true
+      a.delay = 1000
+      playFrame a.frames[currentFrame], ->
+        a.readyForNext = true
 
 
 playFrame = (frame, next) ->
