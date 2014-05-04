@@ -23,7 +23,6 @@ $(window).ready ->
     $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
     #$("#time").text new Date(frames[0]?.time).toLocaleString()
     a.frames = frames
-    alert a.frames.length
 
   a.readyForNext = true
 
@@ -60,5 +59,6 @@ playFrame = (frame, next) ->
 
 frameLoaded = (img) ->
   $("#stillFrame").css 'background-image', "url('#{img.srcElement.src}')"
+  alert img.srcElement.src
   $("#time").text img.srcElement.alt
 
