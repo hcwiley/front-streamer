@@ -43,22 +43,12 @@ $(window).ready ->
           currentFrame = a.frames.length
       $("#time").html "#{o.x}<br>#{o.y}"
       if Math.abs(val) > 1
-        a.delay = (7 / Math.abs(val)) * 500
+        #a.delay = (7 / Math.abs(val)) * 500
+        a.delay = 500
         playFrame a.frames[currentFrame], ->
           a.readyForNext = true
 
 
-
-playFrames = (frames) ->
-  time = 60*60*1000
-  a.delay = time / a.frames.length
-  $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
-  #$("#time").text new Date(frames[0]?.time).toLocaleString()
-  playFrame frames[currentFrame], ->
-    if ++currentFrame < frames.length
-      playFrames frames
-    else
-      window.location = window.location.pathname
 
 playFrame = (frame, next) ->
   setTimeout ->
