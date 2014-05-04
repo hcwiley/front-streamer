@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  video#video(autoplay)
+  canvas#canvas
+  .row.text-center
+    h2 fuck it, ship it
+    p this installation lets you record yourself, and see what you are doing at the same time as The Front installation.
+  .row
+    hr
+  .row
+    .col-xs-12
+      .row.form-inline
+        .form-group.col-xs-12
+          label.col-xs-4.text-center username
+          .col-xs-8
+            input.form-control(type='username', name='username', placeholder='username', value="#{username ? username : ''}")
+      .row
+        .col-xs-6.col-xs-offset-3.text-center
+          strong.after after making a username you can go to
+          h4
+            a.mylink(href="/fuckitship") art72.org/fuckitshipit/USERNAME
+  .row
+    .col-xs-12
+      br
+  .row
+    .col-xs-6
+      h5.text-center you right now
+      #userFrame(style='background-image: url("/img/jamiedoe.png");')
+    .col-xs-6
+      h5.text-center meanwhile at the front...
+      #frontFrame(style='background-image: url("/img/front.png");')
+      .col-xs-6.col-xs-offset-3
+        br
+        button.record.btn-block.disabled.btn.btn-danger record
+
+  != js('fuckit')

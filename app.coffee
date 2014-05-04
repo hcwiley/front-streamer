@@ -14,6 +14,7 @@ fs                = require 'fs'
 mongoose          = require 'mongoose'
 
 Frame = require('./models').Frame
+UserFrame = require('./models').UserFrame
 
 mongoose.connect config.mongodb
 
@@ -60,6 +61,13 @@ io.sockets.on "connection",  (socket) ->
   socket.on "lock", (data) ->
     console.log "lock!"
 
+  socket.on 'getLatest', ->
+    console.log 'get latest frames'
+    Frame.find().sort('-time').limit(1).exec (err, frames) ->
+      return console.log err  if err?
+      console.log 'got dat frame'
+      socket.emit 'latestFront', frames[0]
+
   socket.on 'getFrames', ->
     console.log 'get them frames'
     Frame.find {}, (err, frames) ->
@@ -67,11 +75,26 @@ io.sockets.on "connection",  (socket) ->
       console.log 'got dem frames'
       socket.emit 'gotFrames', frames
 
+  socket.on 'getUser', (username)->
+    console.log "get them user frames: #{username}"
+    UserFrame.find username:username, (err, frames) ->
+      return console.log err  if err?
+      console.log frames
+      console.log 'got dem user frames'
+      socket.emit 'gotUserFrames', frames
 
   socket.on 'image', (uri) ->
     base64Data = uri.replace(/^data:image\/png;base64,/,"")
     buffer = new Buffer(base64Data, 'base64')
-    Frame.saveImage buffer
+    Frame.saveImage buffer, (err, frame) ->
+      io.sockets.emit 'latestFront', frame
+
+  socket.on 'userImage', (username, uri) ->
+    base64Data = uri.replace(/^data:image\/png;base64,/,"")
+    buffer = new Buffer(base64Data, 'base64')
+    UserFrame.saveImage username, buffer, (err, frame) ->
+      console.log 'saved it'
+      #io.sockets.emit 'latestFront', frame
 
       
 # you need to be signed for this business!
@@ -94,6 +117,12 @@ app.get "/", (req, res) ->
 
 app.get "/gyro", (req, res) ->
   res.render "gyro.jade"
+
+app.get "/fuckitshipit", (req, res) ->
+  res.render "fuckit.jade"
+
+app.get "/fuckitshipit/:username", (req, res) ->
+  res.render "playback.jade", username:req.params.username
 
 app.get "/record", (req, res) ->
   if !req.session.auth?.match('so-good')

@@ -28,3 +28,28 @@ Frame.static "saveImage", (buffer, next) ->
     me.save next
 
 exports.Frame = mongoose.model 'Frame', Frame
+
+UserFrame = new Schema
+  time:
+    type: Date
+    default: new Date()
+  src: String
+  username:
+    type: String
+    default: 'Foo Bar Jr.'
+
+UserFrame.static "saveImage", (username, buffer, next) ->
+  me = new exports.UserFrame time: new Date(), username: username
+  folder = "#{me.username}/#{me.time.getFullYear()}-#{me.time.getMonth()}-#{me.time.getDate()}"
+  path = "#{folder}/#{me.time.toJSON()}.png"
+  me.src = "https://s3.amazonaws.com/#{config.s3.bucket}/#{path}"
+  headers = 
+    'x-amz-acl': 'public-read'
+    'Content-Length': buffer.length
+    'Content-Type': 'image/png'
+  s3Client.putBuffer buffer, path, headers, (err, res) ->
+    if err?
+      return console.log err
+    me.save next
+
+exports.UserFrame = mongoose.model 'UserFrame', UserFrame

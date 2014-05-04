@@ -1,0 +1,33 @@
+
+extends layout
+
+block content
+  video#video(autoplay)
+  canvas#canvas
+  .row.text-center
+    h2 fuck it, ship it
+    p this installation lets you record yourself, and see what you are doing at the same time as The Front installation.
+  .row
+    hr
+  .row
+    .col-xs-12.text-center
+      h3 #{username}'s channel
+  .row
+    .col-xs-12
+      br
+  .row
+    .col-xs-6
+      h5.text-center #{username}
+      #userFrame(style='background-image: url("/img/jamiedoe.png");')
+    .col-xs-6
+      h5.text-center meanwhile at the front...
+      #frontFrame(style='background-image: url("/img/front.png");')
+  .row
+    .col-xs-12.text-center
+      h4.time
+
+  script
+    this.a = this.a || {};
+    this.a.playback = true
+    this.a.username = "#{username}";
+  != js('fuckit')
