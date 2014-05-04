@@ -92,6 +92,9 @@ app.get "/login", (req, res) ->
 app.get "/", (req, res) ->
   res.render "index.jade"
 
+app.get "/gyro", (req, res) ->
+  res.render "gyro.jade"
+
 app.get "/record", (req, res) ->
   if !req.session.auth?.match('so-good')
     return res.redirect '/login'

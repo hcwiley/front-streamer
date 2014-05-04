@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .row
+    h1#time
+    #stillFrame(style='background-image: url("/img/front.png");')
+    #bufferFrame
+  != js('gyro')
+
