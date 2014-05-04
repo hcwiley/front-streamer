@@ -4,8 +4,8 @@ block content
   .row
     video#video(autoplay)
     canvas#canvas
-    img#stillFrame(src='/img/front.png')
-    label 
+    #stillFrame(style='background-image: url("/img/front.png");')
+    label
       h1 record
       input#record(type='checkbox')
   != js('writer')

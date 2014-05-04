@@ -2,6 +2,8 @@ extends layout
 
 block content
   .row
-    img#stillFrame(src='/img/front.png')
+    h1#time
+    #stillFrame(style='background-image: url("/img/front.png");')
+    #bufferFrame
   != js('client')
 

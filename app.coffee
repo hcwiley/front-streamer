@@ -62,7 +62,7 @@ io.sockets.on "connection",  (socket) ->
 
   socket.on 'getFrames', ->
     console.log 'get them frames'
-    Frame.find {}, 'src', (err, frames) ->
+    Frame.find {}, (err, frames) ->
       return console.log err  if err?
       console.log 'got dem frames'
       socket.emit 'gotFrames', frames

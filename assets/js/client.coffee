@@ -23,15 +23,24 @@ $(window).ready ->
 
 currentFrame = 0
 playFrames = (frames) ->
+  a.frames = frames
+  time = 60*60*1000
+  a.delay = time / a.frames.length
   playFrame frames[currentFrame], ->
     if ++currentFrame < frames.length
       playFrames frames
-
-
+    else
+      window.location = window.location.pathname
 
 playFrame = (frame, next) ->
   setTimeout ->
-    $("#stillFrame").attr 'src', frame.src
+    image = new Image()
+    image.onload = frameLoaded
+    image.src = frame.src
+    image.alt = new Date(frame.time).toLocaleString()
     next()
-  , 1000
+  , a.delay
 
+frameLoaded = (img) ->
+  $("#stillFrame").css 'background-image', "url('#{img.srcElement.src}')"
+  $("#time").text img.srcElement.alt

@@ -3,6 +3,10 @@ html, body {
   height: 100%;
 }
 
+* {
+  font-family: 'Helvetica', sans-serif
+}
+
 #video {
   display: none;
 }
@@ -13,12 +17,53 @@ html, body {
   display: none;
 }
 
+#time {
+  text-align: center;
+  text-shadow: 0px 0px 3px #fff;
+}
+
 #stillFrame {
   width: 100%;
-  height: auto;
-  max-height: 80%;
-  position: relative;
+  height: 100%;
+  position: fixed;
+  z-index: -1;
   left: 0px;
   top: 0px;
-  margin: auto;
+  margin: 0px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#bufferFrame {
+  height: 0px;
+  width: 0px;
+  position: fixed; 
+  top: -1000px;
+  left: 0px;
+}
+
+
+label {
+  position: fixed;
+  z-index: 1;
+  bottom: 10px;
+  left: 10px;
+  display: inline;
+  background: rgba(100,100,100,0.7);
+  padding: 1px 5px;
+  border-radius: 5px;
+  h1 {
+    display: inline;
+    color: #c43388;
+    font-variant: small-caps;
+  }
+  #record {
+    display: inline;
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    position: relative;
+    top: 2px;
+  }
 }

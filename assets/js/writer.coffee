@@ -33,7 +33,7 @@ drawStill = ->
     context = canvas.getContext('2d')
     context.drawImage(v,0,0,canvas.width,canvas.height)
     uri = canvas.toDataURL("image/png")
-    $("#stillFrame").attr 'src', uri
+    $("#stillFrame").css 'background-image', "url('#{uri}')"
     if $("#record")[0].checked
       a.socket.emit 'image', uri
     drawStill()
