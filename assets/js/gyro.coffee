@@ -42,13 +42,11 @@ $(window).ready ->
       if val < 0
         if --currentFrame == -1
           currentFrame = a.frames.length
-      $("#time").html "#{o.x}<br>#{o.y}"
       if Math.abs(val) > 1
         #a.delay = (7 / Math.abs(val)) * 500
         a.delay = 1000
         playFrame a.frames[currentFrame], ->
           a.readyForNext = true
-
 
 
 playFrame = (frame, next) ->
@@ -63,3 +61,4 @@ playFrame = (frame, next) ->
 frameLoaded = (img) ->
   $("#stillFrame").css 'background-image', "url('#{img.srcElement.src}')"
   $("#time").text img.srcElement.alt
+
