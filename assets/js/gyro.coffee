@@ -44,7 +44,7 @@ $(window).ready ->
         if --currentFrame == -1
           currentFrame = a.frames.length
         dir = 'y'
-      $("#time").text "#{dir}: #{val}"
+      $("#time").html "#{o.x}<br>#{o.y}"
       if Math.abs(val) > 1
         a.delay = (7 / Math.abs(val)) * 500
         playFrame a.frames[currentFrame], ->
