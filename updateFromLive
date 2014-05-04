@@ -6,6 +6,7 @@ npm install
 source .env
 forever stop $PWD/app.coffee
 if [[ -f ~/.forever/front_streamer.log ]]; then
+  echo "REMOVE IT!"
   rm ~/.forever/front_streamer.log
 fi
-  forever -l front_streamer.log --append start -c coffee $PWD/app.coffee
+  forever -l front_streamer.log start -c coffee $PWD/app.coffee
