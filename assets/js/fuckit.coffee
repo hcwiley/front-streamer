@@ -69,6 +69,9 @@ $(window).ready ->
     
     if (navigator.getUserMedia)
       navigator.getUserMedia({video: true}, handleVideo, videoError);
+    else
+      $("#userFrame").html "<h1 style='color: #c44;'>please use firefox or chrome</h1>"
+      $("#userFrame").css 'background-image', 'none'
 
 handleVideo = (stream) ->
   $(".disabled").removeClass 'disabled'
