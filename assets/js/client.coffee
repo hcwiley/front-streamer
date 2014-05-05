@@ -44,6 +44,5 @@ playFrame = (frame, next) ->
   , a.delay
 
 frameLoaded = (img) ->
-  console.log img
   $("#stillFrame").css 'background-image', "url('#{img.target.src}')"
   $("#time").text img.target.alt

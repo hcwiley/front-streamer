@@ -118,9 +118,9 @@ playFrame = (frame, next) ->
   , a.delay
 
 frameLoaded = (img) ->
-  $("#frontFrame").css 'background-image', "url('#{img.srcElement.src}')"
-  $("#time").text img.srcElement.alt
-  $(".front-time").text img.srcElement.alt
+  $("#frontFrame").css 'background-image', "url('#{img.target.src}')"
+  $("#time").text img.target.alt
+  $(".front-time").text img.target.alt
 
 currentUserFrame = 1
 playUserFrames = (userFrames) ->
@@ -145,6 +145,6 @@ playUserFrame = (userFrame, next) ->
   , a.delay
 
 userFrameLoaded = (img) ->
-  $("#userFrame").css 'background-image', "url('#{img.srcElement.src}')"
-  $("#time").text img.srcElement.alt
-  $(".user-time").text img.srcElement.alt
+  $("#userFrame").css 'background-image', "url('#{img.target.src}')"
+  $("#time").text img.target.alt
+  $(".user-time").text img.target.alt
