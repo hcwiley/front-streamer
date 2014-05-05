@@ -77,7 +77,7 @@ io.sockets.on "connection",  (socket) ->
 
   socket.on 'getFrames', ->
     console.log 'get them frames'
-    Frame.find {}, (err, frames) ->
+    Frame.find({}).sort("time").exec, (err, frames) ->
       return console.log err  if err?
       console.log 'got dem frames'
       socket.emit 'gotFrames', frames
