@@ -22,8 +22,8 @@ $(window).ready ->
   if (navigator.getUserMedia)
     navigator.getUserMedia({video: true}, handleVideo, videoError);
   else
-    $("#userFrame").html "<h1 style='color: #c44;'>please use firefox or chrome</h1>"
-    $("#userFrame").css 'background-image', 'none'
+    $("#stillFrame").html "<h1 style='color: #c44;'>please use firefox or chrome</h1>"
+    $("#stillFrame").css 'background-image', 'none'
 
 handleVideo = (stream) ->
   video.src = window.URL.createObjectURL(stream)

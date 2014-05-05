@@ -128,7 +128,6 @@ app.get "/login", (req, res) ->
 app.get "/", (req, res) ->
   Frame.find({}).sort("time").exec (err, frames) ->
     str = JSON.stringify(frames).replace(/&quot;/g,'\"')
-    console.log str
     res.render "index.jade", frames: str
 
 app.get "/gyro", (req, res) ->
