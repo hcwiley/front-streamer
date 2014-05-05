@@ -111,7 +111,7 @@ playFrames = (frames) ->
 playFrame = (frame, next) ->
   setTimeout ->
     image = new Image()
-    image.onload = frameLoaded
+    $(image).load frameLoaded
     image.src = frame.src
     image.alt = new Date(frame.time).toLocaleString()
     next() if next?
@@ -138,7 +138,7 @@ playUserFrame = (userFrame, next) ->
   setTimeout ->
     a.socket.emit 'getNearest', userFrame.time
     image = new Image()
-    image.onload = userFrameLoaded
+    $(image).load userFrameLoaded
     image.src = userFrame.src
     image.alt = new Date(userFrame.time).toLocaleString()
     next() if next?

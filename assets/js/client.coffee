@@ -37,12 +37,13 @@ playFrames = (frames) ->
 playFrame = (frame, next) ->
   setTimeout ->
     image = new Image()
-    image.onload = frameLoaded
+    $(image).load frameLoaded
     image.src = frame.src
     image.alt = new Date(frame.time).toLocaleString()
     next()
   , a.delay
 
 frameLoaded = (img) ->
-  $("#stillFrame").css 'background-image', "url('#{img.srcElement.src}')"
-  $("#time").text img.srcElement.alt
+  console.log img
+  $("#stillFrame").css 'background-image', "url('#{img.target.src}')"
+  $("#time").text img.target.alt
