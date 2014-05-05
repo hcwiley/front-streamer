@@ -113,7 +113,7 @@ playFrame = (frame, next) ->
 frameLoaded = (img) ->
   $("#frontFrame").css 'background-image', "url('#{img.srcElement.src}')"
   $("#time").text img.srcElement.alt
-  $(".time").text img.srcElement.alt
+  $(".front-time").text img.srcElement.alt
 
 currentUserFrame = 1
 playUserFrames = (userFrames) ->
@@ -129,10 +129,7 @@ playUserFrames = (userFrames) ->
 
 playUserFrame = (userFrame, next) ->
   setTimeout ->
-    frontimage = new Image()
-    frontimage.onload = frameLoaded
-    frontimage.src = userFrame.src.replace("#{a.username}/","")
-    frontimage.alt = new Date(userFrame.time).toLocaleString()
+    a.socket.emit 'getNearest', userFrame.time
     image = new Image()
     image.onload = userFrameLoaded
     image.src = userFrame.src
@@ -143,4 +140,4 @@ playUserFrame = (userFrame, next) ->
 userFrameLoaded = (img) ->
   $("#userFrame").css 'background-image', "url('#{img.srcElement.src}')"
   $("#time").text img.srcElement.alt
-  $(".time").text img.srcElement.alt
+  $(".user-time").text img.srcElement.alt

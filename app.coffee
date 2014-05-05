@@ -68,6 +68,13 @@ io.sockets.on "connection",  (socket) ->
       console.log 'got dat frame'
       socket.emit 'latestFront', frames[0]
 
+  socket.on 'getNearest', (time) ->
+    console.log "get nearest frames: #{time}"
+    Frame.find({time:{$lte:time}}).sort('-time').limit(1).exec (err, frames) ->
+      return console.log err  if err?
+      if frames.length > 0
+        socket.emit 'latestFront', frames[0]
+
   socket.on 'getFrames', ->
     console.log 'get them frames'
     Frame.find {}, (err, frames) ->
@@ -79,8 +86,6 @@ io.sockets.on "connection",  (socket) ->
     console.log "get them user frames: #{username}"
     UserFrame.find username:username, (err, frames) ->
       return console.log err  if err?
-      console.log frames
-      console.log 'got dem user frames'
       socket.emit 'gotUserFrames', frames
 
   socket.on 'image', (uri) ->
