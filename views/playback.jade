@@ -24,6 +24,20 @@ block content
       h5.text-center meanwhile at the front...
       #frontFrame(style='background-image: url("/img/front.png");')
       h4.front-time.text-center
+  .row
+    br
+    .col-xs-8.col-xs-offset-2.form-inline
+      h4.text-center pick a start date and time
+      .form-group.col-xs-4
+        label.col-xs-4 date
+        .col-xs-8
+          input.form-control(type='text', name='date', placeholder='##')
+      .form-group.col-xs-5
+        label.col-xs-4 time
+        .col-xs-8
+          input.form-control(type='time', name='time')
+      .form-group.col-xs-3
+        button.getTime.btn.btn-primary get time
 
   script
     this.a = this.a || {};

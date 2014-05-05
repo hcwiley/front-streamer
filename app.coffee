@@ -88,6 +88,14 @@ io.sockets.on "connection",  (socket) ->
       return console.log err  if err?
       socket.emit 'gotUserFrames', frames
 
+  socket.on 'getUserTime', (username, date, time)->
+    console.log "get them user frames: #{username}, #{date}, #{time}"
+    time = new Date("2014-5-#{date} #{time}")
+    UserFrame.find(username:username, time:{$gte:time} ).sort('time').exec (err, frames) ->
+      return console.log err  if err?
+      console.log 'got user time'
+      socket.emit 'gotUserFrames', frames
+
   socket.on 'image', (uri) ->
     base64Data = uri.replace(/^data:image\/png;base64,/,"")
     buffer = new Buffer(base64Data, 'base64')

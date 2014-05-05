@@ -40,6 +40,10 @@ $(window).ready ->
       $(".mylink").text "art72.org/fuckitshipit/#{val}"
     , 10
 
+  $(".getTime").click ->
+    currentUserFrame = 0
+    socket.emit 'getUserTime', a.username, $("[name='date']").val(), $("[name='time']").val()
+
   $("button.record").click ->
     if $("[name='username']").val() < 1
       $("[name='username']").parents('.form-group').addClass("has-error has-feedback")
@@ -124,8 +128,8 @@ playUserFrames = (userFrames) ->
   playUserFrame a.userFrames[currentUserFrame], ->
     if ++currentUserFrame < a.userFrames.length
       playUserFrames a.userFrames
-    #else
-      #window.location = window.location.pathname
+    else
+      currentUserFrame = 0
 
 playUserFrame = (userFrame, next) ->
   setTimeout ->
