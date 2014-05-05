@@ -5,5 +5,8 @@ block content
     h1#time
     #stillFrame(style='background-image: url("/img/front.png");')
     #bufferFrame
+  script
+    this.a = this.a || {};
+    this.a.frames = JSON.parse(String('#{frames}').replace(/&quot;/g,"\""));
   != js('client')
 

@@ -16,9 +16,11 @@ $(window).ready ->
     console.log "connected"
     socket.emit "hello", "world"
 
-  socket.emit 'getFrames', ''
+  #socket.emit 'getFrames', ''
 
   socket.on 'gotFrames', playFrames
+
+  playFrames a.frames
 
 
 currentFrame = 0
