@@ -21,13 +21,11 @@ $(window).ready ->
   socket.on 'gotFrames', playFrames
 
 
-currentFrame = 1
+currentFrame = 0
 playFrames = (frames) ->
   a.frames = frames
   time = 60*60*1000
   a.delay = time / a.frames.length
-  $("#stillFrame").css 'background-image', "url('#{frames[0]?.src}')"
-  $("#time").text new Date(frames[0]?.time).toLocaleString()
   playFrame frames[currentFrame], ->
     if ++currentFrame < frames.length
       playFrames frames
